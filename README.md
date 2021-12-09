@@ -4,7 +4,7 @@
 | Student name     |  CCID     | 
 |------------------|-----------|
 | Uduak Ituen      | Ituen     |
-| Maisha Binte moin| Bintemoi|      
+| Maisha Binte Moin| Bintemoi|      
 
 ## TODOs
 
