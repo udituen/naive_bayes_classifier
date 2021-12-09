@@ -17,7 +17,7 @@ def preprocess(path):
             w = []
             for word in row[1].split(' '):
                 # check if work is alphanumeric, else it skips
-                if word.isalnum():
+                if word.isalnum() and word not in stops:
                     # convert words to lower case
                     w.append(word.lower())
             word_feature.append((w, row[2]))
