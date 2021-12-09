@@ -1,4 +1,9 @@
 import csv
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+# nltk.download("stopwords")
 
 
 def preprocess(path):
@@ -7,6 +12,7 @@ def preprocess(path):
         next(sentence)
         word_feature = []
         row_id = []
+        stops = set(stopwords.words('english'))
         for row in sentence:
             w = []
             for word in row[1].split(' '):
@@ -58,11 +64,11 @@ def get_counts(token_):
 
 
 def check_accuracy(result):
-    right = 0
+    right_pred = 0
     wrong = []
     for actual_pred in result:
         if actual_pred[0] == actual_pred[1]:
-            right += 1
+            right_pred += 1
         else:
             wrong.append(actual_pred)
-    return right / len(result)
+    return right_pred / len(result)

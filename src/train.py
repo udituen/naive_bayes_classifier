@@ -2,6 +2,7 @@ import operator
 
 from util import get_counts, check_accuracy
 from sklearn.model_selection import KFold
+from sklearn.metrics import confusion_matrix, classification_report
 
 
 def calculate_likelihood(word_count, feature_word_count, vocab):
@@ -28,7 +29,7 @@ class NaiveBayes:
     def __init__(self):
         self.likelihood = {}
         self.prior_probability = {}
-        self.vocab_list = {}
+        self.vocab_list = []
 
     def train_bayes(self, processed_token):
         # get counts for each feature
@@ -45,7 +46,6 @@ class NaiveBayes:
     def train_accuracy(self, train_set):
         feature = list(self.prior_probability.keys())
         predict_probs = {}
-
         for class_ in feature:
             predict_prob = 1
             for word in train_set:
@@ -63,28 +63,29 @@ class NaiveBayes:
 
 def train(sentence):
     kf = KFold(n_splits=3)
-    kf.get_n_splits(sentence)
+    # kf.get_n_splits(sentence)
     mean_accuracy = 0
     for train_index, test_index in kf.split(sentence):
-
         train_set = []
         test_set = []
         result = []
+        # unpack sentence from train_index
         for i in train_index:
             train_set.append(sentence[i])
+        # unpack from test_index
         for j in test_index:
             test_set.append(sentence[j])
-
         # call naiveBayes
         NB = NaiveBayes()
         NB.train_bayes(train_set)
 
-        for i in range(len(test_set)):
+        for i in range(len(test_index)):
             predicted_val = NB.train_accuracy(test_set[i][0])
 
             original = test_set[i][1]
 
             result.append((original, predicted_val))
+        print(check_accuracy(result))
 
         mean_accuracy += check_accuracy(result) / 3
 
