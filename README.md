@@ -25,3 +25,5 @@ https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.
 https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html
 https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html
 https://github.com/jmkovachi/sent-classifier/blob/master/classifiers/NaiveBayes.py
+
+Done in partnership with Bintemoin Maisha 
